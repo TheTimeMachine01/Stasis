@@ -282,7 +282,7 @@ export default function GlobeHero() {
             </span>
           </motion.div>
 
-          <h1 className="text-8xl md:text-[140px] lg:text-[170px] font-bold tracking-tighter text-white leading-[0.75] drop-shadow-2xl">
+          <h1 className="text-6xl md:text-[140px] lg:text-[170px] font-bold tracking-tighter text-white leading-[0.75] drop-shadow-2xl">
             Unbreakable <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-500 to-cyan-400 text-glow-blue">
               Equilibrium

@@ -168,7 +168,7 @@ function QuickActionButton({ icon, label, variant }: { icon: React.ReactNode, la
     red: "text-red-400 hover:bg-red-400/10 border-red-400/10 hover:border-red-400/30",
     blue: "text-blue-400 hover:bg-blue-400/10 border-blue-400/10 hover:border-blue-400/30",
     slate: "text-slate-400 hover:bg-slate-400/10 border-slate-400/10 hover:border-slate-400/30",
-    cyan: "text-cyan-400 hover:bg-cyan-400/10 border-cyan-400/10 hover:border-cyan-400/30"
+    cyan: "text-cyan-400 hover:bg-cyan-400/10 border-cyan-500/10 hover:border-cyan-500/30"
   };
 
   return (
@@ -177,7 +177,9 @@ function QuickActionButton({ icon, label, variant }: { icon: React.ReactNode, la
       variants[variant]
     )}>
       <div className="p-2 rounded-lg bg-current/10">
-        {React.cloneElement(icon as React.ReactElement, { className: "w-5 h-5" })}
+        {React.isValidElement(icon) && React.cloneElement(icon as React.ReactElement<{ className?: string }>, { 
+          className: cn("w-5 h-5", (icon.props as any)?.className) 
+        })}
       </div>
       {label}
     </Button>

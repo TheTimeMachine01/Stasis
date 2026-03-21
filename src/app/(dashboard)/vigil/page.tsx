@@ -142,9 +142,10 @@ function MetricTile({ title, value, icon, data, color }: { title: string, value:
       <CardContent className="p-8 pb-0">
          <div className="flex items-start justify-between mb-8 relative z-10">
            <div className="p-3 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-white/10 transition-colors" style={{ color }}>
-             {React.cloneElement(icon as React.ReactElement<any>, { className: 'w-6 h-6 shadow-[0_0_15px_currentColor]' })}
-           </div>
-           <div className="text-3xl font-bold text-white font-mono tracking-tighter">{value}</div>
+             {React.isValidElement(icon) && React.cloneElement(icon as React.ReactElement<{ className?: string }>, { 
+               className: cn('w-6 h-6 shadow-[0_0_15px_currentColor]', (icon.props as any)?.className) 
+             })}
+           </div>           <div className="text-3xl font-bold text-white font-mono tracking-tighter">{value}</div>
          </div>
          <div className="text-slate-500 text-[10px] font-mono uppercase tracking-[0.3em] font-bold mb-10 relative z-10">{title}</div>
       </CardContent>
