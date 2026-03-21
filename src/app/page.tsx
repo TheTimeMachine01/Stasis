@@ -1,3 +1,5 @@
+"use client";
+
 import GlobeHero from "@/components/GlobeHero";
 import Navbar from "@/components/Navbar";
 import { Shield, Activity, Lock, Globe, Zap, Database, ArrowUpRight, CheckCircle2, ChevronRight, Server, Globe2, ArrowRight } from "lucide-react";
@@ -6,6 +8,20 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const fadeInUp = {
+  initial: { opacity: 0, y: 20 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true },
+  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+};
+
+const staggerContainer = {
+  initial: {},
+  whileInView: { transition: { staggerChildren: 0.1 } },
+  viewport: { once: true }
+};
 
 export default function Home() {
   return (
@@ -18,112 +34,142 @@ export default function Home() {
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
         
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-32">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-blue-500/20 glass-dark text-[10px] uppercase tracking-[0.2em] font-bold text-blue-400/80">
+          <motion.div 
+            {...staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            className="text-center mb-32"
+            id="architecture"
+          >
+            <motion.div 
+              variants={fadeInUp}
+              className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-blue-500/20 glass-dark text-[10px] uppercase tracking-[0.2em] font-bold text-blue-400/80"
+            >
                Platform Architecture
-            </div>
-            <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">
+            </motion.div>
+            <motion.h2 
+              variants={fadeInUp}
+              className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight"
+            >
               The Architecture of <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 text-glow-blue">
                 Digital Sovereignty
               </span>
-            </h2>
-            <p className="text-white/40 max-w-2xl mx-auto text-xl leading-relaxed font-medium">
+            </motion.h2>
+            <motion.p 
+              variants={fadeInUp}
+              className="text-white/40 max-w-2xl mx-auto text-xl leading-relaxed font-medium"
+            >
               Stasis is an <span className="text-blue-300/60">unbreakable equilibrium</span> for global infrastructure. 
               Explore the modules defining the standard in proactive defense.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 auto-rows-[320px]">
+          <motion.div 
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="whileInView"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-12 gap-8 auto-rows-[320px]"
+          >
             {/* Real-time Visualization */}
-            <Card className="md:col-span-8 rounded-[2.5rem] border-white/5 bg-gradient-to-br from-blue-500/[0.03] to-white/[0.01] backdrop-blur-sm relative group overflow-hidden shadow-2xl">
-               <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">
-                  <Globe2 className="w-64 h-64 text-blue-400" />
-               </div>
-               <CardContent className="relative z-10 flex flex-col h-full p-12">
-                  <div className="flex items-center gap-3 mb-6">
-                     <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 shadow-lg shadow-blue-500/10">
-                        <Globe className="w-5 h-5" />
-                     </div>
-                     <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">Visual Intelligence</span>
-                  </div>
-                  <CardTitle className="text-3xl font-bold text-white mb-4 tracking-tight">Real-time <span className="text-blue-400/80">Global</span> Visualization</CardTitle>
-                  <CardDescription className="text-white/40 max-w-md text-base leading-relaxed font-medium">
-                     Experience your infrastructure through <span className="text-indigo-300/40">high-fidelity 3D telemetry</span>. 
-                     Every packet, every threat, every node—visualized in a single, unified command center.
-                  </CardDescription>
-                  <div className="mt-auto">
-                     <Button variant="link" className="p-0 h-auto text-blue-400 hover:text-white font-bold uppercase tracking-widest text-[10px] gap-2 group/link">
-                        Explore Nexus <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
-                     </Button>
-                  </div>
-               </CardContent>
-            </Card>
+            <motion.div variants={fadeInUp} className="md:col-span-8 h-full">
+              <Card className="h-full rounded-[2.5rem] border-white/5 bg-gradient-to-br from-blue-500/[0.03] to-white/[0.01] backdrop-blur-sm relative group overflow-hidden shadow-2xl transition-all duration-500 hover:border-blue-500/20">
+                 <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">
+                    <Globe2 className="w-64 h-64 text-blue-400" />
+                 </div>
+                 <CardContent className="relative z-10 flex flex-col h-full p-12">
+                    <div className="flex items-center gap-3 mb-6">
+                       <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 shadow-lg shadow-blue-500/10">
+                          <Globe className="w-5 h-5" />
+                       </div>
+                       <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">Visual Intelligence</span>
+                    </div>
+                    <CardTitle className="text-3xl font-bold text-white mb-4 tracking-tight">Real-time <span className="text-blue-400/80">Global</span> Visualization</CardTitle>
+                    <CardDescription className="text-white/40 max-w-md text-base leading-relaxed font-medium">
+                       Experience your infrastructure through <span className="text-indigo-300/40">high-fidelity 3D telemetry</span>. 
+                       Every packet, every threat, every node—visualized in a single, unified command center.
+                    </CardDescription>
+                    <div className="mt-auto">
+                       <Button variant="link" className="p-0 h-auto text-blue-400 hover:text-white font-bold uppercase tracking-widest text-[10px] gap-2 group/link">
+                          Explore Nexus <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                       </Button>
+                    </div>
+                 </CardContent>
+              </Card>
+            </motion.div>
 
             {/* AI Mitigation */}
-            <Card className="md:col-span-4 rounded-[2.5rem] border-blue-500/10 bg-gradient-to-br from-indigo-500/[0.05] via-white/[0.02] to-transparent flex flex-col shadow-2xl group">
-               <CardContent className="p-12 flex flex-col h-full">
-                  <div className="flex items-center gap-3 mb-auto">
-                     <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
-                        <Zap className="w-5 h-5" />
-                     </div>
-                     <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-[0.2em]">AI Core</span>
-                  </div>
-                  <div className="mt-8">
-                     <CardTitle className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-indigo-400 transition-colors">Proactive <span className="text-indigo-400/60">Mitigation</span></CardTitle>
-                     <CardDescription className="text-sm text-white/40 leading-relaxed font-medium">
-                        Neural networks trained on 100PB+ of attack data automatically identify and <span className="text-indigo-300/30">neutralize threats</span> before they reach your stack.
-                     </CardDescription>
-                  </div>
-               </CardContent>
-            </Card>
+            <motion.div variants={fadeInUp} className="md:col-span-4 h-full">
+              <Card className="h-full rounded-[2.5rem] border-blue-500/10 bg-gradient-to-br from-indigo-500/[0.05] via-white/[0.02] to-transparent flex flex-col shadow-2xl group transition-all duration-500 hover:border-indigo-500/30">
+                 <CardContent className="p-12 flex flex-col h-full">
+                    <div className="flex items-center gap-3 mb-auto">
+                       <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                          <Zap className="w-5 h-5" />
+                       </div>
+                       <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-[0.2em]">AI Core</span>
+                    </div>
+                    <div className="mt-8">
+                       <CardTitle className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-indigo-400 transition-colors">Proactive <span className="text-indigo-400/60">Mitigation</span></CardTitle>
+                       <CardDescription className="text-sm text-white/40 leading-relaxed font-medium">
+                          Neural networks trained on 100PB+ of attack data automatically identify and <span className="text-indigo-300/30">neutralize threats</span> before they reach your stack.
+                       </CardDescription>
+                    </div>
+                 </CardContent>
+              </Card>
+            </motion.div>
 
             {/* Compliance */}
-            <Card className="md:col-span-4 rounded-[2.5rem] border-white/5 bg-white/[0.02] flex flex-col shadow-2xl group relative overflow-hidden">
-               <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl" />
-               <CardContent className="p-12 flex flex-col h-full">
-                  <div className="flex items-center gap-3 mb-auto">
-                     <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                        <Database className="w-5 h-5" />
-                     </div>
-                     <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.2em]">Audit Engine</span>
-                  </div>
-                  <div className="mt-8">
-                     <CardTitle className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-cyan-400 transition-colors">Immutable Archiving</CardTitle>
-                     <CardDescription className="text-sm text-white/40 leading-relaxed font-medium">
-                        Every event is <span className="text-cyan-300/30">cryptographically signed</span> and stored for perfect compliance and digital forensics.
-                     </CardDescription>
-                  </div>
-               </CardContent>
-            </Card>
+            <motion.div variants={fadeInUp} className="md:col-span-4 h-full">
+              <Card className="h-full rounded-[2.5rem] border-white/5 bg-white/[0.02] flex flex-col shadow-2xl group relative overflow-hidden transition-all duration-500 hover:border-cyan-500/20">
+                 <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl" />
+                 <CardContent className="p-12 flex flex-col h-full">
+                    <div className="flex items-center gap-3 mb-auto">
+                       <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                          <Database className="w-5 h-5" />
+                       </div>
+                       <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.2em]">Audit Engine</span>
+                    </div>
+                    <div className="mt-8">
+                       <CardTitle className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-cyan-400 transition-colors">Immutable Archiving</CardTitle>
+                       <CardDescription className="text-sm text-white/40 leading-relaxed font-medium">
+                          Every event is <span className="text-cyan-300/30">cryptographically signed</span> and stored for perfect compliance and digital forensics.
+                       </CardDescription>
+                    </div>
+                 </CardContent>
+              </Card>
+            </motion.div>
 
             {/* Security Policies */}
-            <Card className="md:col-span-8 rounded-[2.5rem] border-white/5 bg-gradient-to-tr from-white/[0.01] via-white/[0.02] to-blue-500/[0.03] relative overflow-hidden shadow-2xl">
-               <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.08)_0%,transparent_70%)]" />
-               <CardContent className="p-12 relative z-10 flex flex-col h-full">
-                  <div className="flex items-center gap-3 mb-6">
-                     <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                        <Shield className="w-5 h-5" />
-                     </div>
-                     <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">Control Plane</span>
-                  </div>
-                  <div className="flex-1 flex flex-col md:flex-row gap-10">
-                     <div className="flex-1">
-                        <CardTitle className="text-3xl font-bold text-white mb-4 tracking-tight">Granular Aegis Policies</CardTitle>
-                        <CardDescription className="text-white/40 text-base leading-relaxed font-medium">
-                           Deploy <span className="text-blue-300/40">complex firewall rules</span>, RBAC settings, and encryption protocols across your fleet with a single toggle.
-                        </CardDescription>
-                     </div>
-                     <div className="flex-1 grid grid-cols-2 gap-3">
-                        <PolicyBadge label="Zero-Trust" color="blue" />
-                        <PolicyBadge label="MFA-Enforced" color="indigo" />
-                        <PolicyBadge label="DDoS-Proof" color="cyan" />
-                        <PolicyBadge label="FIPS-Ready" color="white" />
-                     </div>
-                  </div>
-               </CardContent>
-            </Card>
-          </div>
+            <motion.div variants={fadeInUp} className="md:col-span-8 h-full">
+              <Card className="h-full rounded-[2.5rem] border-white/5 bg-gradient-to-tr from-white/[0.01] via-white/[0.02] to-blue-500/[0.03] relative overflow-hidden shadow-2xl transition-all duration-500 hover:border-blue-400/20">
+                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.08)_0%,transparent_70%)]" />
+                 <CardContent className="p-12 relative z-10 flex flex-col h-full">
+                    <div className="flex items-center gap-3 mb-6">
+                       <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                          <Shield className="w-5 h-5" />
+                       </div>
+                       <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">Control Plane</span>
+                    </div>
+                    <div className="flex-1 flex flex-col md:flex-row gap-10">
+                       <div className="flex-1">
+                          <CardTitle className="text-3xl font-bold text-white mb-4 tracking-tight">Granular Aegis Policies</CardTitle>
+                          <CardDescription className="text-white/40 text-base leading-relaxed font-medium">
+                             Deploy <span className="text-blue-300/40">complex firewall rules</span>, RBAC settings, and encryption protocols across your fleet with a single toggle.
+                          </CardDescription>
+                       </div>
+                       <div className="flex-1 grid grid-cols-2 gap-3">
+                          <PolicyBadge label="Zero-Trust" color="blue" />
+                          <PolicyBadge label="MFA-Enforced" color="indigo" />
+                          <PolicyBadge label="DDoS-Proof" color="cyan" />
+                          <PolicyBadge label="FIPS-Ready" color="white" />
+                       </div>
+                    </div>
+                 </CardContent>
+              </Card>
+            </motion.div>
+          </motion.div>
         </div>
       </section>
 
@@ -131,16 +177,22 @@ export default function Home() {
       <section id="infrastructure" className="py-48 border-y border-white/5 bg-white/[0.01] relative">
          <div className="max-w-7xl mx-auto px-6">
             <div className="flex flex-col lg:flex-row items-center justify-between gap-24">
-               <div className="flex-1 space-y-10">
-                  <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-indigo-500/20 glass-dark text-[10px] uppercase tracking-[0.2em] font-bold text-indigo-400/80">
+               <motion.div 
+                 {...staggerContainer}
+                 initial="initial"
+                 whileInView="whileInView"
+                 viewport={{ once: true }}
+                 className="flex-1 space-y-10"
+               >
+                  <motion.div variants={fadeInUp} className="inline-flex items-center px-4 py-1.5 rounded-full border border-indigo-500/20 glass-dark text-[10px] uppercase tracking-[0.2em] font-bold text-indigo-400/80">
                      Global Network
-                  </div>
-                  <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[0.95]">Global <span className="text-indigo-400/80">Distributed</span> Nodes</h2>
-                  <p className="text-white/40 text-xl leading-relaxed font-medium">
+                  </motion.div>
+                  <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[0.95]">Global <span className="text-indigo-400/80">Distributed</span> Nodes</motion.h2>
+                  <motion.p variants={fadeInUp} className="text-white/40 text-xl leading-relaxed font-medium">
                      Our infrastructure spans 48 regions with over <span className="text-indigo-300/60">48,000 edge nodes</span>. 
                      No matter where your users are, the Equilibrium is always within 10ms.
-                  </p>
-                  <div className="grid grid-cols-2 gap-12 pt-4">
+                  </motion.p>
+                  <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-12 pt-4">
                      <div className="space-y-3">
                         <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 tracking-tighter">100+</div>
                         <div className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">PoP Locations</div>
@@ -149,10 +201,17 @@ export default function Home() {
                         <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 tracking-tighter">99.9%</div>
                         <div className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">Target Uptime</div>
                      </div>
-                  </div>
-               </div>
-               <div className="flex-1 relative w-full lg:w-auto">
-                  <Card className="aspect-square rounded-[3rem] border-white/5 bg-gradient-to-br from-indigo-500/[0.03] to-white/[0.01] p-10 flex items-center justify-center relative overflow-hidden shadow-2xl group">
+                  </motion.div>
+               </motion.div>
+               
+               <motion.div 
+                 initial={{ opacity: 0, scale: 0.95 }}
+                 whileInView={{ opacity: 1, scale: 1 }}
+                 viewport={{ once: true }}
+                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                 className="flex-1 relative w-full lg:w-auto"
+               >
+                  <Card className="aspect-square rounded-[3rem] border-white/5 bg-gradient-to-br from-indigo-500/[0.03] to-white/[0.01] p-10 flex items-center justify-center relative overflow-hidden shadow-2xl group transition-all duration-700 hover:border-indigo-500/20">
                      <div className="w-full h-full rounded-[2.5rem] bg-black border border-white/5 relative overflow-hidden">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.08)_0%,transparent_100%)]" />
                         <div className="p-10">
@@ -176,7 +235,7 @@ export default function Home() {
                      {/* Decorative Glow */}
                      <div className="absolute -top-20 -right-20 w-64 h-64 bg-indigo-500/10 blur-[100px] rounded-full group-hover:bg-indigo-500/20 transition-all duration-700" />
                   </Card>
-               </div>
+               </motion.div>
             </div>
          </div>
       </section>
@@ -184,7 +243,13 @@ export default function Home() {
       {/* Footer CTA */}
       <section className="py-48 px-6 text-center relative overflow-hidden bg-radial-glow">
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
-         <div className="relative z-10 max-w-4xl mx-auto">
+         <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="relative z-10 max-w-4xl mx-auto"
+         >
             <h2 className="text-5xl md:text-8xl font-bold text-white mb-14 tracking-tight leading-[0.9]">
                Ready to secure <br />your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400">future?</span>
             </h2>
@@ -196,17 +261,22 @@ export default function Home() {
                   Contact Sales
                </Button>
             </div>
-         </div>
+         </motion.div>
       </section>
 
       <footer className="py-20 border-t border-white/5 text-center px-6 bg-black">
          <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-center gap-3 mb-12">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="flex items-center justify-center gap-3 mb-12"
+            >
                <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-lg">
                   <Shield className="w-6 h-6 text-black" />
                </div>
                <span className="text-2xl font-bold text-white tracking-tight">STASIS</span>
-            </div>
+            </motion.div>
             <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4 mb-12">
                {['Compliance', 'Privacy', 'Network Status', 'Terminal', 'Design System'].map(link => (
                   <Link key={link} href="#" className="text-[11px] font-bold text-white/30 hover:text-blue-400 transition-colors uppercase tracking-[0.2em]">
@@ -232,7 +302,7 @@ function PolicyBadge({ label, color = "blue" }: { label: string, color?: string 
    };
 
    return (
-      <div className={cn("p-4 rounded-2xl border flex items-center gap-3 transition-all group/badge", colorClasses[color] || colorClasses.blue)}>
+      <div className={cn("p-4 rounded-2xl border flex items-center gap-3 transition-all group/badge hover:scale-[1.02]", colorClasses[color] || colorClasses.blue)}>
          <CheckCircle2 className="w-4 h-4 transition-transform group-hover/badge:scale-110" />
          <span className="text-[10px] font-bold uppercase tracking-widest">{label}</span>
       </div>

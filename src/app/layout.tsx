@@ -3,6 +3,7 @@ import { Geist, JetBrains_Mono, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Providers } from "@/components/Providers";
+import GlobalBackground from "@/components/GlobalBackground";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -42,6 +43,7 @@ export default function RootLayout({
       )}
     >
       <body className="bg-background text-foreground min-h-screen">
+        <GlobalBackground />
         <Providers>
           {children}
         </Providers>
