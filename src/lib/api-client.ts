@@ -1,7 +1,13 @@
 import axios from "axios";
 
 // Base URL for both REST and GraphQL
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+let BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+
+// Ensure the URL has a protocol, otherwise Axios treats it as a relative path
+if (BASE_URL && !BASE_URL.startsWith("http://") && !BASE_URL.startsWith("https://")) {
+  // Default to https for production if protocol is missing
+  BASE_URL = `https://${BASE_URL}`;
+}
 
 // Ensure we don't have double slashes if BASE_URL ends with /
 const cleanBaseUrl = BASE_URL.replace(/\/+$/, "");
