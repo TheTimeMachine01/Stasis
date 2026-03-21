@@ -1,7 +1,13 @@
 import axios from "axios";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080/api";
-const GRAPHQL_URL = "http://localhost:8080/graphql";
+// Base URL for both REST and GraphQL
+const BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8080";
+
+// Ensure we don't have double slashes if BASE_URL ends with /
+const cleanBaseUrl = BASE_URL.replace(/\/+$/, "");
+
+const API_URL = `${cleanBaseUrl}/api`;
+const GRAPHQL_URL = `${cleanBaseUrl}/graphql`;
 
 // Create base instance with credentials enabled for secure cookies
 export const apiClient = axios.create({
@@ -14,9 +20,11 @@ export const apiClient = axios.create({
 
 // Interceptor to add JWT token to requests (Optional backup if header is preferred by backend)
 apiClient.interceptors.request.use((config) => {
-  const token = localStorage.getItem("stasis_token"); // Still checking for Postman/Dev compatibility
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  if (typeof window !== "undefined") {
+    const token = localStorage.getItem("stasis_token"); 
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
   }
   return config;
 });
@@ -32,7 +40,7 @@ apiClient.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        // Call the new refresh endpoint (Backend needs to implement this)
+        // Call the refresh endpoint (Backend needs to implement this)
         await axios.post(`${API_URL}/auth/refresh`, {}, { withCredentials: true });
         
         // If refresh successful, retry the original request
