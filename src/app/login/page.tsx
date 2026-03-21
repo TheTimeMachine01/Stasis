@@ -1,60 +1,121 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
-import { Shield, ArrowRight } from "lucide-react";
+import { Shield, ArrowRight, Loader2, AlertCircle } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 export default function LoginPage() {
-  const { login } = useAuth();
+  const { login, isLoading, error: authError } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [localError, setLocalError] = useState("");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLocalError("");
+    
+    if (!email || !password) {
+      setLocalError("Please fill in all fields.");
+      return;
+    }
+
+    try {
+      await login({ email, password });
+    } catch (err) {
+      // Error handled in AuthContext
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6">
-      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.1)_0%,transparent_70%)]" />
+    <div className="min-h-screen bg-black flex items-center justify-center p-6 relative overflow-hidden font-sans">
+      {/* Background Effect */}
+      <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_0%,transparent_70%)]" />
       
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="glass p-8 rounded-3xl w-full max-w-md border-white/5 relative z-10"
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="w-full max-w-md relative z-10"
       >
-        <div className="flex flex-col items-center mb-8">
-          <div className="w-16 h-16 rounded-2xl bg-cyan-500 flex items-center justify-center glow-cyan mb-4">
-            <Shield className="w-10 h-10 text-slate-950" />
-          </div>
-          <h1 className="text-3xl font-syne font-bold text-white">Stasis Login</h1>
-          <p className="text-slate-500 font-mono text-xs uppercase tracking-widest mt-2">Enter the Equilibrium</p>
-        </div>
+        <Card className="rounded-[2.5rem] border-white/5 bg-white/[0.02] backdrop-blur-2xl p-6 shadow-2xl overflow-hidden relative">
+          {/* Subtle top glow */}
+          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-accent-blue/30 to-transparent" />
+          
+          <CardHeader className="flex flex-col items-center space-y-6 pb-10">
+            <div className="w-16 h-16 rounded-2xl bg-white flex items-center justify-center shadow-2xl">
+              <Shield className="w-10 h-10 text-black" />
+            </div>
+            <div className="text-center space-y-2">
+              <CardTitle className="text-3xl font-bold text-white tracking-tight">Stasis Login</CardTitle>
+              <CardDescription className="text-white/30 text-[10px] uppercase tracking-[0.2em] font-bold">Authorize Session Access</CardDescription>
+            </div>
+          </CardHeader>
 
-        <div className="space-y-4">
-          <div>
-            <label className="text-xs font-mono text-slate-400 uppercase tracking-wider block mb-2">Access Key (Email)</label>
-            <input 
-              type="email" 
-              placeholder="admin@stasis.core"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 transition-colors"
-            />
-          </div>
-          <div>
-            <label className="text-xs font-mono text-slate-400 uppercase tracking-wider block mb-2">Cipher (Password)</label>
-            <input 
-              type="password" 
-              placeholder="••••••••"
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-cyan-500/50 transition-colors"
-            />
-          </div>
-          <button 
-            onClick={login}
-            className="w-full bg-cyan-500 text-slate-950 font-bold py-4 rounded-xl flex items-center justify-center gap-2 hover:bg-cyan-400 transition-all glow-cyan mt-6"
-          >
-            Authorize Session
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-6">
+              {(localError || authError) && (
+                <Alert variant="destructive" className="bg-red-500/10 border-red-500/20 text-red-400 rounded-2xl">
+                  <AlertCircle className="h-4 w-4" />
+                  <AlertDescription className="text-xs font-bold">{localError || authError}</AlertDescription>
+                </Alert>
+              )}
 
-        <p className="text-center text-slate-500 text-xs mt-8">
-          New operative? <Link href="/signup" className="text-cyan-400 hover:underline">Request Access</Link>
-        </p>
+              <div className="space-y-2.5">
+                <Label htmlFor="email" className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] ml-1">Access Key</Label>
+                <Input 
+                  id="email"
+                  type="email" 
+                  autoComplete="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="admin@stasis.core"
+                  disabled={isLoading}
+                  className="h-14 bg-white/5 border-white/5 rounded-2xl px-6 text-white focus:bg-white/10 transition-all placeholder:text-white/10 border-none ring-1 ring-white/5 focus:ring-accent-blue/50"
+                />
+              </div>
+              <div className="space-y-2.5">
+                <Label htmlFor="pass" className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] ml-1">Cipher</Label>
+                <Input 
+                  id="pass"
+                  type="password" 
+                  autoComplete="current-password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  disabled={isLoading}
+                  className="h-14 bg-white/5 border-white/5 rounded-2xl px-6 text-white focus:bg-white/10 transition-all placeholder:text-white/10 border-none ring-1 ring-white/5 focus:ring-accent-blue/50"
+                />
+              </div>
+              <Button 
+                type="submit"
+                disabled={isLoading}
+                className="w-full h-14 bg-white text-black font-bold rounded-full flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all mt-6 shadow-xl"
+              >
+                {isLoading ? (
+                  <Loader2 className="w-5 h-5 animate-spin" />
+                ) : (
+                  <>
+                    Authorize Session
+                    <ArrowRight className="w-4 h-4" />
+                  </>
+                )}
+              </Button>
+            </form>
+          </CardContent>
+
+          <CardFooter className="flex justify-center pt-4 pb-8">
+            <p className="text-white/30 text-xs font-medium">
+              New operative? <Link href="/signup" className="text-white hover:text-accent-blue transition-colors font-bold underline-offset-4 hover:underline">Request Access</Link>
+            </p>
+          </CardFooter>
+        </Card>
       </motion.div>
     </div>
   );

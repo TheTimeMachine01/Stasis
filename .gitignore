@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# prompt and planning related
+.gemini/
+.planning/
+AGENTS.md
+CLAUDE.md
+
+# logs and examples
+error.txt
+.examples/

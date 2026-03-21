@@ -1,199 +1,240 @@
 import GlobeHero from "@/components/GlobeHero";
 import Navbar from "@/components/Navbar";
-import { Shield, Activity, Lock, Globe, Zap, Database, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { Shield, Activity, Lock, Globe, Zap, Database, ArrowUpRight, CheckCircle2, ChevronRight, Server, Globe2, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col bg-slate-950">
+    <main className="flex min-h-screen flex-col selection:bg-accent-blue/30 font-sans bg-transparent">
       <Navbar />
       <GlobeHero />
       
       {/* Section 2: The Core Ecosystem (Bento Grid) */}
-      <section id="features" className="py-24 px-6 relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      <section id="features" className="py-48 px-6 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1px] bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
         
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-6xl font-syne font-bold text-white mb-6">
+          <div className="text-center mb-32">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-blue-500/20 glass-dark text-[10px] uppercase tracking-[0.2em] font-bold text-blue-400/80">
+               Platform Architecture
+            </div>
+            <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tight">
               The Architecture of <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400 text-glow-blue">
                 Digital Sovereignty
               </span>
             </h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-              Stasis is not just a tool; it's an unbreakable equilibrium for your global infrastructure. 
-              Explore the modules that make us the standard in proactive defense.
+            <p className="text-white/40 max-w-2xl mx-auto text-xl leading-relaxed font-medium">
+              Stasis is an <span className="text-blue-300/60">unbreakable equilibrium</span> for global infrastructure. 
+              Explore the modules defining the standard in proactive defense.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[240px]">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 auto-rows-[320px]">
             {/* Real-time Visualization */}
-            <div className="md:col-span-8 glass rounded-3xl p-8 border-white/5 relative group overflow-hidden">
-               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
-                  <Globe className="w-32 h-32 text-cyan-400" />
+            <Card className="md:col-span-8 rounded-[2.5rem] border-white/5 bg-gradient-to-br from-blue-500/[0.03] to-white/[0.01] backdrop-blur-sm relative group overflow-hidden shadow-2xl">
+               <div className="absolute top-0 right-0 p-12 opacity-5 group-hover:opacity-10 transition-opacity">
+                  <Globe2 className="w-64 h-64 text-blue-400" />
                </div>
-               <div className="relative z-10 flex flex-col h-full">
-                  <div className="flex items-center gap-3 mb-4">
-                     <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400">
+               <CardContent className="relative z-10 flex flex-col h-full p-12">
+                  <div className="flex items-center gap-3 mb-6">
+                     <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 shadow-lg shadow-blue-500/10">
                         <Globe className="w-5 h-5" />
                      </div>
-                     <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">Visual Intelligence</span>
+                     <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">Visual Intelligence</span>
                   </div>
-                  <h3 className="text-2xl font-syne font-bold text-white mb-4">Real-time Global Visualization</h3>
-                  <p className="text-slate-400 max-w-md">
-                     Experience your infrastructure through high-fidelity 3D telemetry. 
+                  <CardTitle className="text-3xl font-bold text-white mb-4 tracking-tight">Real-time <span className="text-blue-400/80">Global</span> Visualization</CardTitle>
+                  <CardDescription className="text-white/40 max-w-md text-base leading-relaxed font-medium">
+                     Experience your infrastructure through <span className="text-indigo-300/40">high-fidelity 3D telemetry</span>. 
                      Every packet, every threat, every node—visualized in a single, unified command center.
-                  </p>
-                  <div className="mt-auto flex items-center gap-2 text-sm font-bold text-white cursor-pointer group/link">
-                     Explore Nexus <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                  </CardDescription>
+                  <div className="mt-auto">
+                     <Button variant="link" className="p-0 h-auto text-blue-400 hover:text-white font-bold uppercase tracking-widest text-[10px] gap-2 group/link">
+                        Explore Nexus <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
+                     </Button>
                   </div>
-               </div>
-            </div>
+               </CardContent>
+            </Card>
 
             {/* AI Mitigation */}
-            <div className="md:col-span-4 glass rounded-3xl p-8 border-white/5 bg-gradient-to-br from-blue-500/5 to-transparent flex flex-col justify-between">
-               <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400">
-                     <Zap className="w-5 h-5" />
+            <Card className="md:col-span-4 rounded-[2.5rem] border-blue-500/10 bg-gradient-to-br from-indigo-500/[0.05] via-white/[0.02] to-transparent flex flex-col shadow-2xl group">
+               <CardContent className="p-12 flex flex-col h-full">
+                  <div className="flex items-center gap-3 mb-auto">
+                     <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
+                        <Zap className="w-5 h-5" />
+                     </div>
+                     <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-[0.2em]">AI Core</span>
                   </div>
-                  <span className="text-xs font-mono font-bold text-blue-400 uppercase tracking-widest">AI Core</span>
-               </div>
-               <div>
-                  <h3 className="text-xl font-syne font-bold text-white mb-2">Proactive Mitigation</h3>
-                  <p className="text-sm text-slate-400">
-                     Neural networks trained on 100PB+ of attack data automatically identify and neutralize zero-day threats.
-                  </p>
-               </div>
-            </div>
+                  <div className="mt-8">
+                     <CardTitle className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-indigo-400 transition-colors">Proactive <span className="text-indigo-400/60">Mitigation</span></CardTitle>
+                     <CardDescription className="text-sm text-white/40 leading-relaxed font-medium">
+                        Neural networks trained on 100PB+ of attack data automatically identify and <span className="text-indigo-300/30">neutralize threats</span> before they reach your stack.
+                     </CardDescription>
+                  </div>
+               </CardContent>
+            </Card>
 
             {/* Compliance */}
-            <div className="md:col-span-4 glass rounded-3xl p-8 border-white/5 flex flex-col justify-between">
-               <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-slate-500/10 text-slate-400">
-                     <Database className="w-5 h-5" />
+            <Card className="md:col-span-4 rounded-[2.5rem] border-white/5 bg-white/[0.02] flex flex-col shadow-2xl group relative overflow-hidden">
+               <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-cyan-500/5 rounded-full blur-3xl" />
+               <CardContent className="p-12 flex flex-col h-full">
+                  <div className="flex items-center gap-3 mb-auto">
+                     <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+                        <Database className="w-5 h-5" />
+                     </div>
+                     <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.2em]">Audit Engine</span>
                   </div>
-                  <span className="text-xs font-mono font-bold text-slate-400 uppercase tracking-widest">Audit Engine</span>
-               </div>
-               <div>
-                  <h3 className="text-xl font-syne font-bold text-white mb-2">Immutable Archiving</h3>
-                  <p className="text-sm text-slate-400">
-                     Every event is cryptographically signed and stored in our distributed ledger for perfect compliance and forensics.
-                  </p>
-               </div>
-            </div>
+                  <div className="mt-8">
+                     <CardTitle className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-cyan-400 transition-colors">Immutable Archiving</CardTitle>
+                     <CardDescription className="text-sm text-white/40 leading-relaxed font-medium">
+                        Every event is <span className="text-cyan-300/30">cryptographically signed</span> and stored for perfect compliance and digital forensics.
+                     </CardDescription>
+                  </div>
+               </CardContent>
+            </Card>
 
             {/* Security Policies */}
-            <div className="md:col-span-8 glass rounded-3xl p-8 border-white/5 relative overflow-hidden flex flex-col">
-               <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400">
-                     <Shield className="w-5 h-5" />
+            <Card className="md:col-span-8 rounded-[2.5rem] border-white/5 bg-gradient-to-tr from-white/[0.01] via-white/[0.02] to-blue-500/[0.03] relative overflow-hidden shadow-2xl">
+               <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(59,130,246,0.08)_0%,transparent_70%)]" />
+               <CardContent className="p-12 relative z-10 flex flex-col h-full">
+                  <div className="flex items-center gap-3 mb-6">
+                     <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
+                        <Shield className="w-5 h-5" />
+                     </div>
+                     <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">Control Plane</span>
                   </div>
-                  <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest">Control Plane</span>
-               </div>
-               <div className="flex-1 flex flex-col md:flex-row gap-8">
-                  <div className="flex-1">
-                     <h3 className="text-2xl font-syne font-bold text-white mb-4">Granular Aegis Policies</h3>
-                     <p className="text-slate-400">
-                        Deploy complex firewall rules, RBAC settings, and encryption protocols across your entire fleet with a single toggle.
-                     </p>
-                  </div>
-                  <div className="flex-1 grid grid-cols-2 gap-3">
-                     <div className="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                        <span className="text-[10px] font-bold text-slate-300 uppercase tracking-tighter">Zero-Trust</span>
+                  <div className="flex-1 flex flex-col md:flex-row gap-10">
+                     <div className="flex-1">
+                        <CardTitle className="text-3xl font-bold text-white mb-4 tracking-tight">Granular Aegis Policies</CardTitle>
+                        <CardDescription className="text-white/40 text-base leading-relaxed font-medium">
+                           Deploy <span className="text-blue-300/40">complex firewall rules</span>, RBAC settings, and encryption protocols across your fleet with a single toggle.
+                        </CardDescription>
                      </div>
-                     <div className="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                        <span className="text-[10px] font-bold text-slate-300 uppercase tracking-tighter">MFA-Enforced</span>
-                     </div>
-                     <div className="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                        <span className="text-[10px] font-bold text-slate-300 uppercase tracking-tighter">DDoS-Proof</span>
-                     </div>
-                     <div className="p-4 rounded-2xl bg-white/5 border border-white/5 flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-cyan-400" />
-                        <span className="text-[10px] font-bold text-slate-300 uppercase tracking-tighter">FIPS-Ready</span>
+                     <div className="flex-1 grid grid-cols-2 gap-3">
+                        <PolicyBadge label="Zero-Trust" color="blue" />
+                        <PolicyBadge label="MFA-Enforced" color="indigo" />
+                        <PolicyBadge label="DDoS-Proof" color="cyan" />
+                        <PolicyBadge label="FIPS-Ready" color="white" />
                      </div>
                   </div>
-               </div>
-            </div>
+               </CardContent>
+            </Card>
           </div>
         </div>
       </section>
 
-      {/* Section 3: Global Infrastructure Marquee */}
-      <section id="infrastructure" className="py-24 border-y border-white/5 bg-slate-900/50">
+      {/* Section 3: Global Infrastructure */}
+      <section id="infrastructure" className="py-48 border-y border-white/5 bg-white/[0.01] relative">
          <div className="max-w-7xl mx-auto px-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-12">
-               <div className="flex-1">
-                  <h2 className="text-3xl md:text-5xl font-syne font-bold text-white mb-6">Global Distributed Nodes</h2>
-                  <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                     Our infrastructure spans 48 regions with over 48,000 edge nodes. 
+            <div className="flex flex-col lg:flex-row items-center justify-between gap-24">
+               <div className="flex-1 space-y-10">
+                  <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-indigo-500/20 glass-dark text-[10px] uppercase tracking-[0.2em] font-bold text-indigo-400/80">
+                     Global Network
+                  </div>
+                  <h2 className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[0.95]">Global <span className="text-indigo-400/80">Distributed</span> Nodes</h2>
+                  <p className="text-white/40 text-xl leading-relaxed font-medium">
+                     Our infrastructure spans 48 regions with over <span className="text-indigo-300/60">48,000 edge nodes</span>. 
                      No matter where your users are, the Equilibrium is always within 10ms.
                   </p>
-                  <div className="grid grid-cols-2 gap-6">
-                     <div>
-                        <div className="text-3xl font-bold text-cyan-400 font-mono">100+</div>
-                        <div className="text-xs text-slate-500 font-mono uppercase tracking-widest mt-1">PoP Locations</div>
+                  <div className="grid grid-cols-2 gap-12 pt-4">
+                     <div className="space-y-3">
+                        <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 tracking-tighter">100+</div>
+                        <div className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">PoP Locations</div>
                      </div>
-                     <div>
-                        <div className="text-3xl font-bold text-cyan-400 font-mono">99.999%</div>
-                        <div className="text-xs text-slate-500 font-mono uppercase tracking-widest mt-1">Target Uptime</div>
+                     <div className="space-y-3">
+                        <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 tracking-tighter">99.9%</div>
+                        <div className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">Target Uptime</div>
                      </div>
                   </div>
                </div>
-               <div className="flex-1 relative">
-                  <div className="aspect-square rounded-3xl glass border-white/5 overflow-hidden flex items-center justify-center p-8">
-                     <div className="w-full h-full rounded-2xl bg-slate-950/50 border border-white/10 relative overflow-hidden">
-                        {/* Mock Infrastructure Visualization */}
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.05)_0%,transparent_100%)]" />
-                        <div className="p-6">
-                           <div className="text-[10px] font-mono text-cyan-400 mb-4 animate-pulse">CONNECTING_TO_CORE_NODES...</div>
-                           <div className="space-y-3">
+               <div className="flex-1 relative w-full lg:w-auto">
+                  <Card className="aspect-square rounded-[3rem] border-white/5 bg-gradient-to-br from-indigo-500/[0.03] to-white/[0.01] p-10 flex items-center justify-center relative overflow-hidden shadow-2xl group">
+                     <div className="w-full h-full rounded-[2.5rem] bg-black border border-white/5 relative overflow-hidden">
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.08)_0%,transparent_100%)]" />
+                        <div className="p-10">
+                           <div className="flex items-center gap-3 text-[10px] text-indigo-400 mb-8 animate-pulse font-bold tracking-widest uppercase">
+                              <Server className="w-4 h-4" />
+                              Connecting to core...
+                           </div>
+                           <div className="space-y-5">
                               {[...Array(5)].map((_, i) => (
-                                 <div key={i} className="flex items-center justify-between text-[10px] font-mono text-slate-500">
-                                    <span>NODE_0{i+1}_LONDON_UK</span>
-                                    <span className="text-cyan-400">ONLINE</span>
+                                 <div key={i} className="flex items-center justify-between text-[10px] text-white/20 group-hover:text-white/40 transition-colors font-bold tracking-wider">
+                                    <span className="flex items-center gap-3 uppercase">
+                                       <div className="w-1.5 h-1.5 rounded-full bg-indigo-500/40" />
+                                       Node_{i+1}_{['London', 'NYC', 'Tokyo', 'Singapore', 'Berlin'][i]}
+                                    </span>
+                                    <span className="text-indigo-400">ONLINE</span>
                                  </div>
                               ))}
                            </div>
                         </div>
                      </div>
-                  </div>
-                  {/* Decorative Glow */}
-                  <div className="absolute -top-10 -right-10 w-40 h-40 bg-cyan-500/20 blur-[80px] rounded-full" />
+                     {/* Decorative Glow */}
+                     <div className="absolute -top-20 -right-20 w-64 h-64 bg-indigo-500/10 blur-[100px] rounded-full group-hover:bg-indigo-500/20 transition-all duration-700" />
+                  </Card>
                </div>
             </div>
          </div>
       </section>
 
-      {/* Footer-ish CTA */}
-      <section className="py-24 px-6 text-center">
-         <h2 className="text-3xl md:text-5xl font-syne font-bold text-white mb-8">
-            Ready to secure your future?
-         </h2>
-         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button className="px-10 py-5 rounded-2xl bg-cyan-500 text-slate-950 font-bold text-lg hover:scale-105 transition-transform glow-cyan">
-               Get Started Now
-            </button>
-            <button className="px-10 py-5 rounded-2xl glass text-white font-bold text-lg hover:bg-white/10 transition-transform">
-               Contact Sales
-            </button>
+      {/* Footer CTA */}
+      <section className="py-48 px-6 text-center relative overflow-hidden bg-radial-glow">
+         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
+         <div className="relative z-10 max-w-4xl mx-auto">
+            <h2 className="text-5xl md:text-8xl font-bold text-white mb-14 tracking-tight leading-[0.9]">
+               Ready to secure <br />your <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-cyan-400">future?</span>
+            </h2>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
+               <Link href="/signup" className="h-16 px-12 rounded-full bg-white text-black font-bold text-lg hover:scale-105 transition-all shadow-2xl flex items-center justify-center gap-3">
+                  Start Experience <ArrowRight className="w-5 h-5" />
+               </Link>
+               <Button variant="ghost" className="h-16 px-12 rounded-full border border-white/10 text-white font-bold text-lg hover:bg-white/5 transition-all">
+                  Contact Sales
+               </Button>
+            </div>
          </div>
       </section>
 
-      <footer className="py-12 border-t border-white/5 text-center px-6">
-         <div className="flex items-center justify-center gap-2 mb-6">
-            <div className="w-8 h-8 rounded-lg bg-cyan-500 flex items-center justify-center">
-               <Shield className="w-5 h-5 text-slate-950" />
+      <footer className="py-20 border-t border-white/5 text-center px-6 bg-black">
+         <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-center gap-3 mb-12">
+               <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-lg">
+                  <Shield className="w-6 h-6 text-black" />
+               </div>
+               <span className="text-2xl font-bold text-white tracking-tight">STASIS</span>
             </div>
-            <span className="text-xl font-syne font-bold text-white tracking-tighter">STASIS</span>
+            <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4 mb-12">
+               {['Compliance', 'Privacy', 'Network Status', 'Terminal', 'Design System'].map(link => (
+                  <Link key={link} href="#" className="text-[11px] font-bold text-white/30 hover:text-blue-400 transition-colors uppercase tracking-[0.2em]">
+                     {link}
+                  </Link>
+               ))}
+            </nav>
+            <p className="text-white/10 text-[10px] uppercase tracking-[0.3em] font-bold">
+               © 2026 STASIS CORE INFRASTRUCTURE. ALL RIGHTS RESERVED.
+            </p>
          </div>
-         <p className="text-slate-600 text-sm font-mono uppercase tracking-widest">
-            © 2026 STASIS CORE INFRASTRUCTURE. ALL RIGHTS RESERVED.
-         </p>
       </footer>
     </main>
   );
+}
+
+function PolicyBadge({ label, color = "blue" }: { label: string, color?: string }) {
+   const colorClasses: Record<string, string> = {
+      blue: "text-blue-400 bg-blue-500/10 border-blue-500/20",
+      indigo: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
+      cyan: "text-cyan-400 bg-cyan-500/10 border-cyan-500/20",
+      white: "text-white/50 bg-white/5 border-white/10",
+   };
+
+   return (
+      <div className={cn("p-4 rounded-2xl border flex items-center gap-3 transition-all group/badge", colorClasses[color] || colorClasses.blue)}>
+         <CheckCircle2 className="w-4 h-4 transition-transform group-hover/badge:scale-110" />
+         <span className="text-[10px] font-bold uppercase tracking-widest">{label}</span>
+      </div>
+   );
 }
