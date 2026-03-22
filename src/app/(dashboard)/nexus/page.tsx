@@ -33,7 +33,7 @@ const itemVariants: Variants = {
 export default function NexusPage() {
   const { data: statsData, isLoading: statsLoading } = useQuery({
     queryKey: ["alertStats"],
-    queryFn: () => api.alerts.getAlertStats(),
+    queryFn: () => api.alerts.getStats(),
     select: (res) => res.data?.getAlertStats,
     refetchInterval: 5000,
   });
