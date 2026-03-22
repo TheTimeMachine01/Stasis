@@ -54,7 +54,7 @@ export default function LoginPage() {
             </div>
             <div className="text-center space-y-2">
               <CardTitle className="text-3xl font-bold text-white tracking-tight">Stasis Login</CardTitle>
-              <CardDescription className="text-white/30 text-[10px] uppercase tracking-[0.2em] font-bold">Authorize Session Access</CardDescription>
+              <CardDescription className="text-white/30 text-[10px] font-semibold tracking-wide">Authorize session access</CardDescription>
             </div>
           </CardHeader>
 
@@ -68,7 +68,7 @@ export default function LoginPage() {
               )}
 
               <div className="space-y-2.5">
-                <Label htmlFor="email" className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] ml-1">Access Key</Label>
+                <Label htmlFor="email" className="text-[10px] font-semibold text-white/30 tracking-wide ml-1">Access Key</Label>
                 <Input 
                   id="email"
                   type="email" 
@@ -81,7 +81,7 @@ export default function LoginPage() {
                 />
               </div>
               <div className="space-y-2.5">
-                <Label htmlFor="pass" className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] ml-1">Cipher</Label>
+                <Label htmlFor="pass" className="text-[10px] font-semibold text-white/30 tracking-wide ml-1">Cipher</Label>
                 <Input 
                   id="pass"
                   type="password" 

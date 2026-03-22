@@ -12,9 +12,11 @@ import {
   BarChart3, 
   User,
   LogOut,
-  ChevronUp
+  ChevronUp,
+  Settings
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 import {
   Sidebar,
   SidebarContent,
@@ -49,19 +51,24 @@ export default function DashboardSidebar() {
   const collapsed = state === "collapsed";
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-white/5 bg-slate-950">
+    <Sidebar collapsible="icon" className="border-r border-white/5 bg-black/40 backdrop-blur-xl transition-all duration-300">
       <SidebarHeader className="p-4 flex flex-row items-center gap-3 h-[72px]">
-        <div className="w-10 h-10 min-w-10 rounded-xl bg-cyan-500 flex items-center justify-center glow-cyan shrink-0">
-          <Shield className="w-6 h-6 text-slate-950" />
-        </div>
-        <div className={cn("transition-all duration-300 overflow-hidden", collapsed ? "w-0 opacity-0" : "w-auto opacity-100")}>
-           <span className="text-xl font-syne font-bold tracking-tighter text-white">
-              STASIS
-           </span>
-        </div>
+        <Link href="/" className="flex items-center gap-3 group overflow-hidden">
+          <div className="w-8 h-8 rounded-[0.5rem] bg-white flex items-center justify-center transition-all group-hover:scale-105 duration-500 shadow-sm shadow-white/10">
+            <Shield className="w-5 h-5 text-black" strokeWidth={2.5} />
+          </div>
+          <div className={cn(
+            "transition-all duration-500 overflow-hidden flex flex-col", 
+            collapsed ? "w-0 opacity-0" : "w-auto opacity-100"
+          )}>
+             <span className="text-xl font-bold tracking-tight text-white/90 leading-none">
+                Stasis
+             </span>
+          </div>
+        </Link>
       </SidebarHeader>
 
-      <SidebarContent className="px-3 pt-4">
+      <SidebarContent className="px-3 pt-6 font-sans">
         <SidebarMenu className="gap-2">
           {sidebarLinks.map((link) => {
             const isActive = pathname === link.href;
@@ -72,15 +79,25 @@ export default function DashboardSidebar() {
                   isActive={isActive}
                   tooltip={link.name}
                   className={cn(
-                    "h-12 rounded-xl transition-all gap-4 px-3",
+                    "h-12 rounded-2xl transition-all duration-300 gap-4 px-4 relative group overflow-hidden font-medium",
                     isActive 
-                      ? "bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/15 border border-cyan-500/20" 
-                      : "text-slate-400 hover:text-white hover:bg-white/5"
+                      ? "bg-white/5 text-white border border-white/10 shadow-lg shadow-white/5" 
+                      : "text-white/40 hover:text-white hover:bg-white/[0.03] border border-transparent"
                   )}
                 >
                   <Link href={link.href}>
-                    <link.icon className={cn("w-5 h-5", isActive && "text-cyan-400")} />
-                    <span className="font-semibold text-sm tracking-wide">{link.name}</span>
+                    <link.icon className={cn(
+                      "w-5 h-5 transition-transform duration-300 group-hover:scale-110", 
+                      isActive && "text-white"
+                    )} />
+                    <span className="text-[13px] tracking-tight">{link.name}</span>
+                    {isActive && (
+                      <motion.div 
+                        layoutId="active-pill"
+                        className="absolute left-0 w-1 h-6 bg-white rounded-full"
+                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      />
+                    )}
                   </Link>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -89,7 +106,7 @@ export default function DashboardSidebar() {
         </SidebarMenu>
       </SidebarContent>
 
-      <SidebarFooter className="p-4 border-t border-white/5 space-y-4">
+      <SidebarFooter className="p-4 space-y-4 bg-gradient-to-t from-black/60 to-transparent font-sans">
         {!collapsed && <SystemHealth />}
         <SidebarMenu>
           <SidebarMenuItem>
@@ -97,32 +114,33 @@ export default function DashboardSidebar() {
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton 
                   size="lg" 
-                  className="h-14 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 p-2"
+                  className="h-14 rounded-2xl text-white/40 hover:text-white hover:bg-white/[0.05] p-2 transition-colors border border-transparent hover:border-white/10"
                 >
                   <Avatar className="h-9 w-9 border border-white/10">
                     <AvatarImage src="" />
-                    <AvatarFallback className="bg-cyan-500/10 text-cyan-400 font-bold text-xs">VND</AvatarFallback>
+                    <AvatarFallback className="bg-white text-black font-bold text-xs">VN</AvatarFallback>
                   </Avatar>
-                  <div className="flex flex-col items-start text-xs overflow-hidden">
-                    <span className="font-bold text-slate-200 truncate w-full">Vanguard User</span>
-                    <span className="text-slate-500 truncate w-full">Core Cluster</span>
+                  <div className="flex flex-col items-start text-[11px] overflow-hidden ml-1">
+                    <span className="font-bold text-white/80 truncate w-full tracking-tight">Vanguard Operative</span>
+                    <span className="text-white/20 truncate w-full font-medium">Session Active</span>
                   </div>
-                  <ChevronUp className="ml-auto w-4 h-4" />
+                  <ChevronUp className="ml-auto w-4 h-4 opacity-20" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent
                 side="top"
-                className="w-[--radix-popper-anchor-width] bg-slate-900 border-white/10 text-slate-200 rounded-xl p-2"
+                align="start"
+                className="w-[--radix-popper-anchor-width] glass-morphic text-white/80 rounded-2xl p-2 mb-2 animate-in slide-in-from-bottom-2 duration-300 border-white/10 shadow-2xl"
               >
-                <DropdownMenuItem asChild className="rounded-lg focus:bg-white/5 focus:text-white cursor-pointer py-3 gap-3">
+                <DropdownMenuItem asChild className="rounded-xl focus:bg-white/10 focus:text-white cursor-pointer py-3 gap-3 font-medium">
                    <Link href="/identity" className="flex items-center gap-3">
-                      <User className="w-4 h-4" />
-                      <span>Account Settings</span>
+                      <Settings className="w-4 h-4" />
+                      <span className="text-[12px]">Configuration</span>
                    </Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem className="rounded-lg focus:bg-red-500/10 focus:text-red-400 text-red-400 cursor-pointer py-3 gap-3">
+                <DropdownMenuItem className="rounded-xl focus:bg-red-500/10 focus:text-red-400 text-red-400/80 cursor-pointer py-3 gap-3 font-medium">
                   <LogOut className="w-4 h-4" />
-                  <span>Sign Out</span>
+                  <span className="text-[12px]">Terminate Session</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

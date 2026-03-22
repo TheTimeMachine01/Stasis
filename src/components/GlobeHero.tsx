@@ -277,7 +277,7 @@ export default function GlobeHero() {
             className="inline-flex items-center gap-2 px-5 py-2 mb-10 rounded-full border border-blue-500/10 bg-blue-500/5 backdrop-blur-xl shadow-2xl"
           >
             <Shield className="w-3.5 h-3.5 text-blue-400" />
-            <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.6em]">
+            <span className="text-[11px] font-bold text-blue-400 tracking-wide">
               Stasis Defense Network
             </span>
           </motion.div>

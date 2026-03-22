@@ -60,7 +60,7 @@ export default function SignupPage() {
             </div>
             <div className="text-center space-y-2">
               <CardTitle className="text-3xl font-bold text-white tracking-tight">Join the Equilibrium</CardTitle>
-              <CardDescription className="text-white/30 text-[10px] uppercase tracking-[0.2em] font-bold">Request Vanguard Credentials</CardDescription>
+              <CardDescription className="text-white/30 text-[10px] font-semibold tracking-wide">Request vanguard credentials</CardDescription>
             </div>
           </CardHeader>
 
@@ -74,7 +74,7 @@ export default function SignupPage() {
               )}
 
               <div className="space-y-2.5">
-                <Label htmlFor="name" className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] ml-1">Full Designation</Label>
+                <Label htmlFor="name" className="text-[10px] font-semibold text-white/30 tracking-wide ml-1">Full Designation</Label>
                 <Input 
                   id="name"
                   type="text" 
@@ -86,7 +86,7 @@ export default function SignupPage() {
                 />
               </div>
               <div className="space-y-2.5">
-                <Label htmlFor="email" className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] ml-1">Access Key</Label>
+                <Label htmlFor="email" className="text-[10px] font-semibold text-white/30 tracking-wide ml-1">Access Key</Label>
                 <Input 
                   id="email"
                   type="email" 
@@ -99,7 +99,7 @@ export default function SignupPage() {
                 />
               </div>
               <div className="space-y-2.5">
-                <Label htmlFor="pass" className="text-[10px] font-bold text-white/30 uppercase tracking-[0.2em] ml-1">Initialize Cipher</Label>
+                <Label htmlFor="pass" className="text-[10px] font-semibold text-white/30 tracking-wide ml-1">Initialize Cipher</Label>
                 <Input 
                   id="pass"
                   type="password" 

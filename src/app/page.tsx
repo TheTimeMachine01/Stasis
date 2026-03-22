@@ -44,7 +44,7 @@ export default function Home() {
           >
             <motion.div 
               variants={fadeInUp}
-              className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-blue-500/20 glass-dark text-[10px] uppercase tracking-[0.2em] font-bold text-blue-400/80"
+              className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full border border-blue-500/20 glass-dark text-[10px] font-semibold tracking-wide text-blue-400/80"
             >
                Platform Architecture
             </motion.div>
@@ -84,7 +84,7 @@ export default function Home() {
                        <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20 shadow-lg shadow-blue-500/10">
                           <Globe className="w-5 h-5" />
                        </div>
-                       <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">Visual Intelligence</span>
+                       <span className="text-[10px] font-semibold text-blue-400 tracking-wide">Visual Intelligence</span>
                     </div>
                     <CardTitle className="text-3xl font-bold text-white mb-4 tracking-tight">Real-time <span className="text-blue-400/80">Global</span> Visualization</CardTitle>
                     <CardDescription className="text-white/40 max-w-md text-base leading-relaxed font-medium">
@@ -92,7 +92,7 @@ export default function Home() {
                        Every packet, every threat, every node—visualized in a single, unified command center.
                     </CardDescription>
                     <div className="mt-auto">
-                       <Button variant="link" className="p-0 h-auto text-blue-400 hover:text-white font-bold uppercase tracking-widest text-[10px] gap-2 group/link">
+                       <Button variant="link" className="p-0 h-auto text-blue-400 hover:text-white font-semibold tracking-wide text-[10px] gap-2 group/link">
                           Explore Nexus <ArrowUpRight className="w-4 h-4 group-hover/link:translate-x-1 group-hover/link:-translate-y-1 transition-transform" />
                        </Button>
                     </div>
@@ -108,7 +108,7 @@ export default function Home() {
                        <div className="p-2.5 rounded-xl bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">
                           <Zap className="w-5 h-5" />
                        </div>
-                       <span className="text-[10px] font-bold text-indigo-400 uppercase tracking-[0.2em]">AI Core</span>
+                       <span className="text-[10px] font-semibold text-indigo-400 tracking-wide">AI Core</span>
                     </div>
                     <div className="mt-8">
                        <CardTitle className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-indigo-400 transition-colors">Proactive <span className="text-indigo-400/60">Mitigation</span></CardTitle>
@@ -129,7 +129,7 @@ export default function Home() {
                        <div className="p-2.5 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
                           <Database className="w-5 h-5" />
                        </div>
-                       <span className="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.2em]">Audit Engine</span>
+                       <span className="text-[10px] font-semibold text-cyan-400 tracking-wide">Audit Engine</span>
                     </div>
                     <div className="mt-8">
                        <CardTitle className="text-2xl font-bold text-white mb-3 tracking-tight group-hover:text-cyan-400 transition-colors">Immutable Archiving</CardTitle>
@@ -150,7 +150,7 @@ export default function Home() {
                        <div className="p-2.5 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
                           <Shield className="w-5 h-5" />
                        </div>
-                       <span className="text-[10px] font-bold text-blue-400 uppercase tracking-[0.2em]">Control Plane</span>
+                       <span className="text-[10px] font-semibold text-blue-400 tracking-wide">Control Plane</span>
                     </div>
                     <div className="flex-1 flex flex-col md:flex-row gap-10">
                        <div className="flex-1">
@@ -184,7 +184,7 @@ export default function Home() {
                  viewport={{ once: true }}
                  className="flex-1 space-y-10"
                >
-                  <motion.div variants={fadeInUp} className="inline-flex items-center px-4 py-1.5 rounded-full border border-indigo-500/20 glass-dark text-[10px] uppercase tracking-[0.2em] font-bold text-indigo-400/80">
+                  <motion.div variants={fadeInUp} className="inline-flex items-center px-4 py-1.5 rounded-full border border-indigo-500/20 glass-dark text-[10px] font-semibold tracking-wide text-indigo-400/80">
                      Global Network
                   </motion.div>
                   <motion.h2 variants={fadeInUp} className="text-4xl md:text-6xl font-bold text-white tracking-tight leading-[0.95]">Global <span className="text-indigo-400/80">Distributed</span> Nodes</motion.h2>
@@ -195,11 +195,11 @@ export default function Home() {
                   <motion.div variants={fadeInUp} className="grid grid-cols-2 gap-12 pt-4">
                      <div className="space-y-3">
                         <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400 tracking-tighter">100+</div>
-                        <div className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">PoP Locations</div>
+                        <div className="text-[10px] text-white/30 font-semibold tracking-wide">PoP Locations</div>
                      </div>
                      <div className="space-y-3">
                         <div className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-cyan-400 tracking-tighter">99.9%</div>
-                        <div className="text-[10px] text-white/30 uppercase tracking-[0.2em] font-bold">Target Uptime</div>
+                        <div className="text-[10px] text-white/30 font-semibold tracking-wide">Target Uptime</div>
                      </div>
                   </motion.div>
                </motion.div>
@@ -215,14 +215,14 @@ export default function Home() {
                      <div className="w-full h-full rounded-[2.5rem] bg-black border border-white/5 relative overflow-hidden">
                         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.08)_0%,transparent_100%)]" />
                         <div className="p-10">
-                           <div className="flex items-center gap-3 text-[10px] text-indigo-400 mb-8 animate-pulse font-bold tracking-widest uppercase">
+                           <div className="flex items-center gap-3 text-[10px] text-indigo-400 mb-8 animate-pulse font-semibold tracking-wide">
                               <Server className="w-4 h-4" />
                               Connecting to core...
                            </div>
                            <div className="space-y-5">
                               {[...Array(5)].map((_, i) => (
                                  <div key={i} className="flex items-center justify-between text-[10px] text-white/20 group-hover:text-white/40 transition-colors font-bold tracking-wider">
-                                    <span className="flex items-center gap-3 uppercase">
+                                    <span className="flex items-center gap-3">
                                        <div className="w-1.5 h-1.5 rounded-full bg-indigo-500/40" />
                                        Node_{i+1}_{['London', 'NYC', 'Tokyo', 'Singapore', 'Berlin'][i]}
                                     </span>
@@ -264,7 +264,7 @@ export default function Home() {
          </motion.div>
       </section>
 
-      <footer className="py-20 border-t border-white/5 text-center px-6 bg-black">
+      <footer className="py-24 border-t border-white/5 text-center px-6 bg-black">
          <div className="max-w-7xl mx-auto">
             <motion.div 
               initial={{ opacity: 0 }}
@@ -272,20 +272,20 @@ export default function Home() {
               viewport={{ once: true }}
               className="flex items-center justify-center gap-3 mb-12"
             >
-               <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center shadow-lg">
-                  <Shield className="w-6 h-6 text-black" />
+               <div className="w-8 h-8 rounded-[0.5rem] bg-white flex items-center justify-center shadow-lg">
+                  <Shield className="w-5 h-5 text-black" strokeWidth={2.5} />
                </div>
-               <span className="text-2xl font-bold text-white tracking-tight">STASIS</span>
+               <span className="text-xl font-bold text-white/90 tracking-tight">Stasis</span>
             </motion.div>
-            <nav className="flex flex-wrap justify-center gap-x-12 gap-y-4 mb-12">
+            <nav className="flex flex-wrap justify-center gap-x-10 gap-y-4 mb-12">
                {['Compliance', 'Privacy', 'Network Status', 'Terminal', 'Design System'].map(link => (
-                  <Link key={link} href="#" className="text-[11px] font-bold text-white/30 hover:text-blue-400 transition-colors uppercase tracking-[0.2em]">
+                  <Link key={link} href="#" className="text-[13px] font-medium text-white/40 hover:text-white transition-colors duration-300">
                      {link}
                   </Link>
                ))}
             </nav>
-            <p className="text-white/10 text-[10px] uppercase tracking-[0.3em] font-bold">
-               © 2026 STASIS CORE INFRASTRUCTURE. ALL RIGHTS RESERVED.
+            <p className="text-white/10 text-[11px] font-medium">
+               © 2026 Stasis Core Infrastructure. All rights reserved.
             </p>
          </div>
       </footer>
@@ -304,7 +304,7 @@ function PolicyBadge({ label, color = "blue" }: { label: string, color?: string 
    return (
       <div className={cn("p-4 rounded-2xl border flex items-center gap-3 transition-all group/badge hover:scale-[1.02]", colorClasses[color] || colorClasses.blue)}>
          <CheckCircle2 className="w-4 h-4 transition-transform group-hover/badge:scale-110" />
-         <span className="text-[10px] font-bold uppercase tracking-widest">{label}</span>
+         <span className="text-xs font-semibold tracking-tight">{label}</span>
       </div>
    );
 }

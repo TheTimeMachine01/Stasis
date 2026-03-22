@@ -41,21 +41,39 @@ apiClient.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // If 401 and we haven't tried refreshing yet
-    if (error.response?.status === 401 && !originalRequest._retry) {
+    // If 401 and we haven't tried refreshing yet, and it's not a refresh/login request
+    if (
+      error.response?.status === 401 && 
+      !originalRequest._retry && 
+      !originalRequest.url?.includes("/auth/refresh") &&
+      !originalRequest.url?.includes("/auth/login")
+    ) {
+      const pathname = typeof window !== "undefined" ? window.location.pathname : "";
+      const isAuthPage = pathname.includes("/login") || 
+                         pathname.includes("/signup") || 
+                         pathname === "/" || 
+                         pathname === "";
+
+      // If we are on an auth page or home page, OR the failed request was the 'me' check, 
+      // don't bother refreshing or redirecting, just let the error through
+      if (isAuthPage || originalRequest.url?.includes("/auth/me")) {
+        return Promise.reject(error);
+      }
+
       originalRequest._retry = true;
 
       try {
-        // Call the refresh endpoint (Backend needs to implement this)
-        await axios.post(`${API_URL}/auth/refresh`, {}, { withCredentials: true });
+        // Call the refresh endpoint
+        await api.auth.refresh();
         
         // If refresh successful, retry the original request
         return apiClient(originalRequest);
       } catch (refreshError) {
-        // Refresh failed, clear session and redirect
-        if (typeof window !== "undefined" && !window.location.pathname.includes("/login")) {
+        // Refresh failed, clear session and redirect only if NOT on a public page
+        if (typeof window !== "undefined" && !isAuthPage) {
           window.location.href = "/login";
         }
+        return Promise.reject(refreshError);
       }
     }
     return Promise.reject(error);
@@ -88,7 +106,8 @@ export const graphqlClient = async (query: string, variables: any = {}) => {
 export const api = {
   auth: {
     login: (credentials: any) => apiClient.post("/auth/login", credentials),
-    signup: (data: any) => apiClient.post("/auth/signup", data),
+    signup: (data: any) => apiClient.post("/auth/register", data),
+    refresh: () => apiClient.post("/auth/refresh"),
     logout: () => apiClient.post("/auth/logout"),
     me: () => apiClient.get("/auth/me"), // To verify cookie session on load
   },
@@ -108,7 +127,24 @@ export const api = {
         }
       `),
     markRead: (id: string) => graphqlClient(`mutation MarkAsRead($id: ID!) { markAsRead(id: $id) }`, { id }),
+    markAllRead: () => graphqlClient(`mutation MarkAllRead { markAllRead }`),
     delete: (id: string) => graphqlClient(`mutation DeleteAlert($id: ID!) { deleteAlert(id: $id) }`, { id }),
+    createManual: (data: any) => apiClient.post("/alerts", data),
+    getSystemMetrics: () => 
+      graphqlClient(`
+        query GetSystemMetrics {
+          getSystemMetrics {
+            statistics {
+              total_flows
+              attack_predictions
+              benign_predictions
+              processing_time_ms
+              throughput_flows_per_sec
+              average_confidence
+            }
+          }
+        }
+      `),
   },
   health: {
     check: () => apiClient.get("/healthz"),

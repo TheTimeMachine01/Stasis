@@ -13,8 +13,8 @@
   --color-vibrant-blue: #60a5fa;
 
   /* Fonts */
-  --font-sans: var(--font-geist-sans);
-  --font-heading: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-inter);
   --font-mono: var(--font-mono);
 
   /* Utilities */
@@ -67,8 +67,20 @@
     @apply bg-black/40 backdrop-blur-lg border border-white/5;
   }
 
+  .glass-morphic {
+    @apply bg-gradient-to-br from-white/[0.05] to-transparent backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.8)];
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(to bottom right, rgba(255,255,255,0.1), transparent, rgba(59,130,246,0.1)) 1;
+  }
+
   .text-glow-blue {
     text-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.2);
+  }
+
+  .text-glow-cyan {
+    text-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
   }
 
   .text-glow-white {
@@ -78,9 +90,17 @@
   .glow-primary {
     box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
   }
+
+  .glow-cyan {
+    box-shadow: 0 0 25px rgba(34, 211, 238, 0.25);
+  }
   
   .bg-radial-glow {
     background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+  }
+
+  .bg-grid-white {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='white' stroke-opacity='0.03' stroke-width='1'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
   }
 }
 
