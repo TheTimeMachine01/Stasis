@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Search, Filter, Download, ChevronLeft, ChevronRight, Terminal, ShieldAlert, Cpu, Globe, ArrowUpRight, Maximize2, Loader2, Eye, Trash2, CheckCircle, BrainCircuit, ShieldCheck, Zap, Plus, AlertTriangle } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { 
   Table, 
   TableBody, 
