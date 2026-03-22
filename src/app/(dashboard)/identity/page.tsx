@@ -3,7 +3,7 @@
 import React from "react";
 import { User, Key, Shield, Bell, Smartphone, LogOut, ChevronRight, Globe, ShieldCheck, Mail, Edit3, Trash2, Settings } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -19,7 +19,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
@@ -63,36 +63,36 @@ export default function IdentityPage() {
             <Card className="rounded-[3rem] border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-xl p-2 overflow-hidden relative group shadow-2xl">
                <div className="absolute inset-0 bg-grid-white opacity-5 pointer-events-none" />
                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500/10 blur-[120px] -mr-48 -mt-48 rounded-full pointer-events-none transition-opacity group-hover:opacity-20" />
-               <CardContent className="p-12 flex flex-col lg:flex-row items-center gap-12 relative z-10">
-                  <div className="relative group">
+               <CardContent className="p-8 md:p-12 flex flex-col xl:flex-row items-center gap-10 md:gap-12 relative z-10 text-center xl:text-left">
+                  <div className="relative group shrink-0">
                      <div className="absolute inset-0 rounded-full bg-blue-500/20 blur-2xl group-hover:blur-3xl transition-all duration-500" />
-                     <Avatar className="w-48 h-48 border-2 border-white/10 shadow-2xl relative z-10">
+                     <Avatar className="w-32 h-32 md:w-48 md:h-48 border-2 border-white/10 shadow-2xl relative z-10">
                         <AvatarImage src="" />
-                        <AvatarFallback className="bg-gradient-to-br from-blue-600 to-indigo-600 text-white text-6xl font-bold tracking-tighter">VN</AvatarFallback>
+                        <AvatarFallback className="bg-gradient-to-br from-blue-600 to-indigo-600 text-white text-4xl md:text-6xl font-bold tracking-tighter">VN</AvatarFallback>
                      </Avatar>
-                     <Button variant="outline" size="icon" className="absolute bottom-2 right-2 rounded-2xl bg-black border-white/10 h-14 w-14 text-blue-400 hover:text-white transition-all shadow-2xl z-20 hover:scale-110">
-                        <Edit3 className="w-6 h-6" />
+                     <Button variant="outline" size="icon" className="absolute bottom-0 right-0 md:bottom-2 md:right-2 rounded-2xl bg-black border-white/10 h-10 w-10 md:h-14 md:w-14 text-blue-400 hover:text-white transition-all shadow-2xl z-20 hover:scale-110">
+                        <Edit3 className="w-4 h-4 md:w-6 md:h-6" />
                      </Button>
                   </div>
                   
-                  <div className="flex-1 text-center lg:text-left space-y-6">
+                  <div className="flex-1 space-y-6 w-full">
                      <div>
-                        <h3 className="text-5xl font-bold text-white tracking-tight">Vanguard_01</h3>
-                        <p className="text-blue-500 text-sm font-semibold uppercase tracking-wider mt-3">Lead Security Architect • Core Cluster</p>
+                        <h3 className="text-3xl md:text-5xl font-bold text-white tracking-tight">Vanguard_01</h3>
+                        <p className="text-blue-500 text-xs md:text-sm font-semibold uppercase tracking-wider mt-2 md:mt-3">Lead Security Architect • Core Cluster</p>
                      </div>
                      
-                     <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-                        <Badge variant="outline" className="bg-blue-500/5 text-blue-400 border-blue-500/20 py-2.5 px-6 rounded-2xl gap-3 text-[11px] font-bold border-gradient">
-                           <ShieldCheck className="w-4 h-4" />
+                     <div className="flex flex-wrap justify-center xl:justify-start gap-3 md:gap-4">
+                        <Badge variant="outline" className="bg-blue-500/5 text-blue-400 border-blue-500/20 py-2 md:py-2.5 px-4 md:px-6 rounded-2xl gap-2 md:gap-3 text-[10px] md:text-[11px] font-bold border-gradient">
+                           <ShieldCheck className="w-3.5 h-3.5 md:w-4 md:h-4" />
                            Verified Operative
                         </Badge>
-                        <Badge variant="outline" className="bg-indigo-500/5 text-indigo-400 border-indigo-500/20 py-2.5 px-6 rounded-2xl gap-3 text-[11px] font-bold border-gradient">
-                           <Smartphone className="w-4 h-4" />
+                        <Badge variant="outline" className="bg-indigo-500/5 text-indigo-400 border-indigo-500/20 py-2 md:py-2.5 px-4 md:px-6 rounded-2xl gap-2 md:gap-3 text-[10px] md:text-[11px] font-bold border-gradient">
+                           <Smartphone className="w-3.5 h-3.5 md:w-4 md:h-4" />
                            Quantum MFA Active
                         </Badge>
                      </div>
 
-                     <div className="flex items-center justify-center lg:justify-start gap-8 text-white/30 text-[12px] pt-4 font-medium tracking-wide">
+                     <div className="flex flex-col sm:flex-row items-center justify-center xl:justify-start gap-4 md:gap-8 text-white/30 text-[11px] md:text-[12px] pt-2 md:pt-4 font-medium tracking-wide">
                         <div className="flex items-center gap-3">
                            <Mail className="w-4 h-4 text-blue-500/40" />
                            vanguard.hq@stasis.sec
@@ -104,7 +104,7 @@ export default function IdentityPage() {
                      </div>
                   </div>
                   
-                  <Button className="rounded-[2rem] bg-white text-black font-bold px-12 h-20 hover:scale-105 transition-all shadow-2xl shadow-white/5 text-sm">
+                  <Button className="w-full xl:w-auto rounded-2xl md:rounded-[2rem] bg-white text-black font-bold px-8 md:px-12 h-14 md:h-20 hover:scale-105 transition-all shadow-2xl shadow-white/5 text-xs md:text-sm">
                      Update Security Bundle
                   </Button>
                </CardContent>

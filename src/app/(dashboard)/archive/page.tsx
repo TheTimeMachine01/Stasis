@@ -38,7 +38,7 @@ import { api } from "@/lib/api-client";
 import { useSocket } from "@/context/SocketContext";
 import { Separator } from "@/components/ui/separator";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -46,7 +46,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { y: 10, opacity: 0 },
   visible: {
     y: 0,
@@ -130,7 +130,7 @@ export default function ArchivePage() {
               <p className="text-white/30 text-xs font-semibold uppercase tracking-wider mt-2">Immutable Forensic Intelligence Stream</p>
            </div>
         </div>
-        <div className="flex flex-col sm:flex-row items-center gap-4 w-full lg:w-auto">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full lg:w-auto">
            <div className="hidden xl:flex items-center gap-8 mr-8 border-r border-white/10 pr-8">
               <div className="text-right">
                  <div className="text-[10px] text-white/20 uppercase font-bold tracking-wider">Ingestion Rate</div>
@@ -147,24 +147,26 @@ export default function ArchivePage() {
               />
            </div>
 
-           <Button 
-             variant="outline" 
-             className="rounded-2xl border-white/10 bg-white/5 text-white/60 hover:text-white h-14 gap-3 px-6 border-gradient transition-all font-semibold"
-             onClick={() => setIsManualDialogOpen(true)}
-           >
-              <Plus className="w-5 h-5 text-blue-400" />
-              <span className="text-xs uppercase tracking-wide">Manual Alert</span>
-           </Button>
+           <div className="flex items-center gap-3">
+             <Button 
+               variant="outline" 
+               className="flex-1 sm:flex-none rounded-2xl border-white/10 bg-white/5 text-white/60 hover:text-white h-14 gap-3 px-6 border-gradient transition-all font-semibold"
+               onClick={() => setIsManualDialogOpen(true)}
+             >
+                <Plus className="w-5 h-5 text-blue-400" />
+                <span className="text-xs uppercase tracking-wide">Manual Alert</span>
+             </Button>
 
-           <Button 
-             variant="outline" 
-             className="rounded-2xl border-white/10 bg-white/5 text-white/60 hover:text-white h-14 gap-3 px-6 border-gradient transition-all font-semibold"
-             onClick={() => markAllReadMutation.mutate()}
-             disabled={markAllReadMutation.isPending}
-           >
-              <CheckCircle className="w-5 h-5" />
-              <span className="text-xs uppercase tracking-wide">Resolve All</span>
-           </Button>
+             <Button 
+               variant="outline" 
+               className="flex-1 sm:flex-none rounded-2xl border-white/10 bg-white/5 text-white/60 hover:text-white h-14 gap-3 px-6 border-gradient transition-all font-semibold"
+               onClick={() => markAllReadMutation.mutate()}
+               disabled={markAllReadMutation.isPending}
+             >
+                <CheckCircle className="w-5 h-5" />
+                <span className="text-xs uppercase tracking-wide">Resolve All</span>
+             </Button>
+           </div>
         </div>
       </motion.header>
 
@@ -182,7 +184,7 @@ export default function ArchivePage() {
         <Card className="flex-1 rounded-[2.5rem] border-white/5 bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-xl overflow-hidden flex flex-col shadow-2xl p-1 relative">
            <div className="absolute inset-0 bg-grid-white opacity-5 pointer-events-none" />
            <div className="flex-1 overflow-auto custom-scrollbar relative z-10">
-              <Table>
+              <Table className="min-w-[1000px]">
                  <TableHeader className="bg-black/40 sticky top-0 z-20 backdrop-blur-xl">
                     <TableRow className="border-b border-white/10 hover:bg-transparent px-4">
                        <TableHead className="px-10 h-16 text-[11px] text-white/30 uppercase tracking-widest font-bold">Timestamp</TableHead>

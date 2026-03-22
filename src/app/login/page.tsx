@@ -4,12 +4,21 @@ import React, { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Shield, ArrowRight, Loader2, AlertCircle } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+
+const formVariants: Variants = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
+  }
+};
 
 export default function LoginPage() {
   const { login, isLoading, error: authError } = useAuth();
@@ -39,9 +48,9 @@ export default function LoginPage() {
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.08)_0%,transparent_70%)]" />
       
       <motion.div 
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        variants={formVariants}
+        initial="hidden"
+        animate="visible"
         className="w-full max-w-md relative z-10"
       >
         <Card className="rounded-[2.5rem] border-white/5 bg-white/[0.02] backdrop-blur-2xl p-6 shadow-2xl overflow-hidden relative">

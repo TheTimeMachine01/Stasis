@@ -3,7 +3,7 @@
 import React from "react";
 import { Shield, Activity, Globe, Zap, AlertTriangle, ArrowUpRight, TrendingUp, Server, Cpu, Database, Plus, ChevronRight, BarChart3, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,7 +11,7 @@ import { Separator } from "@/components/ui/separator";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api-client";
 
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
@@ -21,7 +21,7 @@ const containerVariants = {
   }
 };
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
@@ -81,9 +81,9 @@ export default function NexusPage() {
         </div>
       </motion.header>
 
-      <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
-        <div className="md:col-span-8 space-y-8">
-           <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+        <div className="xl:col-span-8 space-y-8">
+           <motion.div variants={itemVariants} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
               <StatCard 
                 title="Integrity Score" 
                 value={statsLoading ? "..." : (statsData?.total > 100 ? "82.4%" : "99.9%")} 
@@ -146,9 +146,9 @@ export default function NexusPage() {
            </motion.div>
         </div>
 
-        <div className="md:col-span-4 space-y-8">
+        <div className="xl:col-span-4 space-y-8">
            <motion.div variants={itemVariants}>
-              <Card className="rounded-[2.5rem] overflow-hidden relative border-white/5 h-[360px] group bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-xl shadow-xl">
+              <Card className="rounded-[2.5rem] overflow-hidden relative border-white/5 h-[360px] md:h-[400px] group bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-xl shadow-xl">
                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1)_0%,transparent_100%)] animate-pulse" />
                  <CardContent className="p-10 relative z-10 flex flex-col h-full">
                     <div className="flex items-center justify-between mb-8">
@@ -302,14 +302,18 @@ function LogLine({ time, level, service, message }: { time: string, level: strin
   }[level as 'CRITICAL' | 'WARN' | 'INFO'];
 
   return (
-    <div className="flex items-center gap-6 py-3 border-b border-white/[0.02] last:border-0 hover:bg-white/[0.03] px-5 rounded-2xl transition-all group cursor-default">
-       <span className="text-[11px] font-mono text-white/20 w-24 group-hover:text-white/40 transition-colors">{time}</span>
-       <div className={cn("text-[10px] font-bold flex justify-center py-1 px-3 rounded-full border tracking-wide", levelVariant)}>
-         {level}
+    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-6 py-4 md:py-3 border-b border-white/[0.02] last:border-0 hover:bg-white/[0.03] px-5 rounded-2xl transition-all group cursor-default">
+       <div className="flex items-center justify-between md:justify-start gap-4">
+          <span className="text-[10px] font-mono text-white/20 w-24 group-hover:text-white/40 transition-colors">{time}</span>
+          <div className={cn("text-[9px] font-bold flex justify-center py-1 px-3 rounded-full border tracking-wide", levelVariant)}>
+            {level}
+          </div>
        </div>
-       <span className="text-[11px] font-bold text-white/30 w-24 uppercase tracking-wider group-hover:text-blue-400 transition-colors">[{service}]</span>
-       <span className="text-sm text-white/60 font-medium flex-1 truncate group-hover:text-white transition-colors">{message}</span>
-       <ChevronRight className="w-4 h-4 text-white/10 group-hover:text-blue-500 transition-all group-hover:translate-x-1" />
+       <div className="flex items-center gap-3 flex-1">
+          <span className="text-[10px] font-bold text-white/30 w-20 uppercase tracking-wider group-hover:text-blue-400 transition-colors">[{service}]</span>
+          <span className="text-sm text-white/60 font-medium flex-1 truncate group-hover:text-white transition-colors">{message}</span>
+       </div>
+       <ChevronRight className="hidden md:block w-4 h-4 text-white/10 group-hover:text-blue-500 transition-all group-hover:translate-x-1" />
     </div>
   );
 }

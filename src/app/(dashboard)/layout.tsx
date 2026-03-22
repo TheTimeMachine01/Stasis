@@ -4,7 +4,16 @@ import DashboardSidebar from "@/components/DashboardSidebar";
 import BottomNav from "@/components/BottomNav";
 import AuthGuard from "@/components/AuthGuard";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
+
+const contentVariants: Variants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] }
+  }
+};
 
 export default function DashboardLayout({
   children,
@@ -35,10 +44,10 @@ export default function DashboardLayout({
             </header>
 
             <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-              className="flex-1 overflow-y-auto pb-20 md:pb-0 px-6 py-8 custom-scrollbar"
+              variants={contentVariants}
+              initial="hidden"
+              animate="visible"
+              className="flex-1 overflow-y-auto pb-24 md:pb-8 px-4 md:px-8 py-6 md:py-10 custom-scrollbar"
             >
               {children}
             </motion.div>

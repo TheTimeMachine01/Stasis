@@ -8,19 +8,40 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
-const fadeInUp = {
+const fadeInUp: Variants = {
   initial: { opacity: 0, y: 20 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  whileInView: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  }
 };
 
-const staggerContainer = {
+const staggerContainer: Variants = {
   initial: {},
-  whileInView: { transition: { staggerChildren: 0.1 } },
-  viewport: { once: true }
+  whileInView: { 
+    transition: { staggerChildren: 0.1 } 
+  }
+};
+
+const imageVariants: Variants = {
+  initial: { opacity: 0, scale: 0.95 },
+  whileInView: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] }
+  }
+};
+
+const footerCTAVariants: Variants = {
+  initial: { opacity: 0, y: 30 },
+  whileInView: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 1, ease: [0.16, 1, 0.3, 1] }
+  }
 };
 
 export default function Home() {
@@ -205,10 +226,10 @@ export default function Home() {
                </motion.div>
                
                <motion.div 
-                 initial={{ opacity: 0, scale: 0.95 }}
-                 whileInView={{ opacity: 1, scale: 1 }}
+                 variants={imageVariants}
+                 initial="initial"
+                 whileInView="whileInView"
                  viewport={{ once: true }}
-                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
                  className="flex-1 relative w-full lg:w-auto"
                >
                   <Card className="aspect-square rounded-[3rem] border-white/5 bg-gradient-to-br from-indigo-500/[0.03] to-white/[0.01] p-10 flex items-center justify-center relative overflow-hidden shadow-2xl group transition-all duration-700 hover:border-indigo-500/20">
@@ -244,10 +265,10 @@ export default function Home() {
       <section className="py-48 px-6 text-center relative overflow-hidden bg-radial-glow">
          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/5 rounded-full blur-[120px] pointer-events-none" />
          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            variants={footerCTAVariants}
+            initial="initial"
+            whileInView="whileInView"
             viewport={{ once: true }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
             className="relative z-10 max-w-4xl mx-auto"
          >
             <h2 className="text-5xl md:text-8xl font-bold text-white mb-14 tracking-tight leading-[0.9]">
